@@ -254,6 +254,33 @@ function saveGame() {
 }
 
 function loadGame() {
+    // В loadScene() функцию добавьте:
+function loadScene(sceneId) {
+    // ПРЕДВАРИТЕЛЬНАЯ ЗАГРУЗКА ИЗОБРАЖЕНИЯ
+    const scene = scenes[sceneId];
+    
+    // Создаем скрытый элемент для предзагрузки
+    const img = new Image();
+    img.src = scene.background.replace("w=800", "w=600&fit=crop&auto=format");
+    
+    // Ждем загрузки изображения ПЕРЕД показом сцены
+    img.onload = () => {
+        // Обновляем фон только после загрузки
+        document.getElementById("background").style.backgroundImage = 
+            `url("${img.src}")`;
+        
+        // Обновляем текст и кнопки
+        document.getElementById("scene-text").textContent = scene.text;
+        createChoiceButtons(scene.choices);
+    };
+    
+    // Если изображение не загрузилось за 3 секунды, показываем без него
+    setTimeout(() => {
+        if (!img.complete) {
+            document.getElementById("background").style.backgroundImage = 
+                "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+        }
+    }, 3000);
     // Загружаем из localStorage
     const save = localStorage.getItem("text_game_save");
     if (save) {
