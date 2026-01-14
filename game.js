@@ -60,7 +60,7 @@ const scenes = {
         background: "images/drk.forest.jpg",
         text: "В лесу становится темнее. Вы слышите странные звуки. Потеряли 10 здоровья.",
         choices: [
-            { text: "Идти дальше", nextScene: "forest_depth", effect: () => gameState.health -= 15 },
+            { text: "Идти дальше", nextScene: "forest_crossroads", effect: () => gameState.health -= 15 },
             { text: "Вернуться", nextScene: "start" },
             { text: "Попытаться разжечь огонь", nextScene: "campfire", effect: () => gameState.inventory.push("Факел") }
         ]
@@ -72,7 +72,7 @@ const scenes = {
         text: "Вы разожгли костер. Стало светлее и теплее. +15 к здоровью.",
         choices: [
             { text: "Отдохнуть у костра", nextScene: "rest", effect: () => gameState.health += 30 },
-            { text: "Продолжить путь", nextScene: "forest_depth" }
+            { text: "Продолжить путь", nextScene: "forest_crossroads" }
         ]
     },
     
