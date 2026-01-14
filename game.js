@@ -254,8 +254,6 @@ function saveGame() {
 }
 
 function loadGame() {
-    // В loadScene() функцию добавьте:
-function loadScene(sceneId) {
     // Загружаем из localStorage
     const save = localStorage.getItem("text_game_save");
     if (save) {
