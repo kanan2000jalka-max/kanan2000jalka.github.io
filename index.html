@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Текстовая игра</title>
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Инициализируем Telegram Web App SDK -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <!-- Блок с фоновым изображением -->
+        <div id="background" class="background"></div>
+        
+        <!-- Блок с текстом сцены -->
+        <div class="text-container">
+            <div id="scene-text" class="scene-text">
+                Начало игры...
+            </div>
+        </div>
+        
+        <!-- Блок с вариантами выбора -->
+        <div id="choices" class="choices-container">
+            <!-- Варианты появятся здесь динамически -->
+        </div>
+        
+        <!-- Блок инвентаря/статистики -->
+        <div class="stats">
+            <div id="inventory">Инвентарь: пусто</div>
+            <div id="health">❤️ Здоровье: 100</div>
+        </div>
+    </div>
+    
+    <!-- Подключаем основной скрипт -->
+    <script src="game.js"></script>
+</body>
+</html>
