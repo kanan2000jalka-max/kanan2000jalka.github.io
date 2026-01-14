@@ -23,7 +23,7 @@ const gameState = {
 const scenes = {
     // Начальная сцена
     "start": {
-        background: "images/111.png",
+        //background: "images/111.png",
         text: "Вы просыпаетесь в древнем лесу. Вокруг густой туман. Перед вами две тропинки.",
         choices: [
             { text: "Пойти налево, к свету", nextScene: "light_path", effect: () => console.log("Выбрал левый путь") },
