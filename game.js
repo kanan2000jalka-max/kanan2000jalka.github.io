@@ -33,7 +33,7 @@ const scenes = {
     
     // Сцена: Путь к свету
     "light_path": {
-        background: "images/333",
+        background: "images/222.png",
         text: "Вы идете к свету. Вдали виден старый храм. У входа сидит мудрый старец.",
         choices: [
             { text: "Поговорить со старцем", nextScene: "elder_talk", effect: () => gameState.inventory.push("Совет старца") },
@@ -44,7 +44,7 @@ const scenes = {
     
     // Сцена: Разговор со старцем
     "elder_talk": {
-        background: "images/111",
+        background: "images/333.png",
         text: "Старец даёт вам волшебный амулет и говорит: 'Это поможет в тёмных местах'.",
         choices: [
             { text: "Принять амулет и идти дальше", nextScene: "temple_inside", effect: () => {
@@ -57,7 +57,7 @@ const scenes = {
     
     // Сцена: Тёмный лес
     "dark_forest": {
-        background: "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800",
+        background: "images/drk.forest.jpg",
         text: "В лесу становится темнее. Вы слышите странные звуки. Потеряли 10 здоровья.",
         choices: [
             { text: "Идти дальше", nextScene: "forest_depth", effect: () => gameState.health -= 15 },
@@ -68,7 +68,7 @@ const scenes = {
     
     // Сцена: Костер
     "campfire": {
-        background: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800",
+        background: "images/fire.jpg",
         text: "Вы разожгли костер. Стало светлее и теплее. +15 к здоровью.",
         choices: [
             { text: "Отдохнуть у костра", nextScene: "rest", effect: () => gameState.health += 30 },
@@ -78,7 +78,7 @@ const scenes = {
     
     // Сцена: Перекресток
     "forest_crossroads": {
-        background: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800",
+        background: "images/forest.2.jpg",
         text: "Вы на перекрестке. Куда пойдёте?",
         choices: [
             { text: "К реке", nextScene: "river", effect: () => gameState.inventory.push("Чистая вода") },
@@ -89,7 +89,7 @@ const scenes = {
     
     // Финал 1: Храм
     "temple_inside": {
-        background: "https://images.unsplash.com/photo-1528164344705-47542687000d?w=800",
+        background: "images/fresc.jpg",
         text: "Вы в храме. Древние фрески рассказывают историю этого места. Конец пути.",
         choices: [
             { text: "Начать заново", nextScene: "start", effect: () => resetGame() }
@@ -98,7 +98,7 @@ const scenes = {
     
     // Финал 2: Река
     "river": {
-        background: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=800",
+        background: "images/river.jpg",
         text: "Вы нашли чистую реку. Утолили жажду и набрали воды. Хороший конец!",
         choices: [
             { text: "Играть снова", nextScene: "start", effect: () => resetGame() }
