@@ -2,12 +2,6 @@
 // 1. ИНИЦИАЛИЗАЦИЯ ИГРЫ
 // ========================
 
-// В начале game.js добавьте:
-window.onerror = function(msg, url, lineNo, columnNo, error) {
-    console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo);
-    return false;
-};
-
 // Инициализируем Telegram Web App
 const tg = window.Telegram.WebApp;
 tg.expand(); // Разворачиваем на весь экран
