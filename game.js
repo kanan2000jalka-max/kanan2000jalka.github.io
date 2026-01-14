@@ -123,8 +123,8 @@ function loadScene(sceneId) {
     gameState.visitedScenes.add(sceneId);
     
     // Обновляем фон
-    document.getElementById("background").style.backgroundImage = 
-        `url("${scene.background}?auto=compress&cs=tinysrgb&w=800")`;
+    //document.getElementById("background").style.backgroundImage = 
+    //    `url("${scene.background}?auto=compress&cs=tinysrgb&w=800")`;
     
     // Обновляем текст
     document.getElementById("scene-text").textContent = scene.text;
