@@ -33,7 +33,7 @@ const scenes = {
     
     // Сцена: Путь к свету
     "light_path": {
-        background: "images/222.png",
+        //background: "images/222.png",
         text: "Вы идете к свету. Вдали виден старый храм. У входа сидит мудрый старец.",
         choices: [
             { text: "Поговорить со старцем", nextScene: "elder_talk", effect: () => gameState.inventory.push("Совет старца") },
