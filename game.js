@@ -23,7 +23,7 @@ const gameState = {
 const scenes = {
     // Начальная сцена
     "start": {
-        background: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+        background: "images/222",
         text: "Вы просыпаетесь в древнем лесу. Вокруг густой туман. Перед вами две тропинки.",
         choices: [
             { text: "Пойти налево, к свету", nextScene: "light_path", effect: () => console.log("Выбрал левый путь") },
@@ -33,7 +33,7 @@ const scenes = {
     
     // Сцена: Путь к свету
     "light_path": {
-        background: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800",
+        background: "images/333",
         text: "Вы идете к свету. Вдали виден старый храм. У входа сидит мудрый старец.",
         choices: [
             { text: "Поговорить со старцем", nextScene: "elder_talk", effect: () => gameState.inventory.push("Совет старца") },
@@ -44,7 +44,7 @@ const scenes = {
     
     // Сцена: Разговор со старцем
     "elder_talk": {
-        background: "https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800",
+        background: "images/111",
         text: "Старец даёт вам волшебный амулет и говорит: 'Это поможет в тёмных местах'.",
         choices: [
             { text: "Принять амулет и идти дальше", nextScene: "temple_inside", effect: () => {
