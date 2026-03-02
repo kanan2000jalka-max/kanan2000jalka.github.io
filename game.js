@@ -52,31 +52,32 @@ function saveGame() {
 // ========================
 // 4. БАЗА ДАННЫХ ВАШЕЙ ИСТОРИИ
 // ========================
+// ========================
+// 4. ПЕРВАЯ СЦЕНА (ОБНОВЛЕННАЯ)
+// ========================
 function showFirstScene() {
     const gameContainer = document.querySelector('.game-container');
     const bgElement = document.getElementById('background');
     const textContainer = document.querySelector('.text-container');
+    const wrapper = document.querySelector('.scrolling-text-wrapper');
     const choicesContainer = document.getElementById('choices');
     
-    // Устанавливаем фон для первой сцены
+    // Устанавливаем фон
     if (bgElement) {
-        bgElement.style.backgroundImage = "url('images/drk.png')";
+        bgElement.style.backgroundImage = "url('images/111.png')";
     }
     
-    // Скрываем стандартные элементы
+    // Скрываем текстовые элементы (они не нужны на первой сцене)
     if (textContainer) textContainer.style.display = 'none';
     if (choicesContainer) choicesContainer.style.display = 'none';
     
-    // Добавляем класс для особой стилизации
     gameContainer.classList.add('first-scene');
     
-    // Проверяем, не создана ли уже кнопка
+    // Удаляем старую кнопку если есть
     let existingButton = document.querySelector('.light-button-container');
-    if (existingButton) {
-        existingButton.remove();
-    }
+    if (existingButton) existingButton.remove();
     
-    // Создаем центрированную кнопку
+    // Создаем кнопку "СВЕТ"
     const buttonContainer = document.createElement('div');
     buttonContainer.className = 'centered-button-container light-button-container';
     
@@ -85,19 +86,21 @@ function showFirstScene() {
     lightButton.textContent = 'СВЕТ';
     
     lightButton.onclick = () => {
-        // При нажатии на кнопку
         gameState.gameStarted = true;
         saveGame();
         
-        // Удаляем специальную кнопку
         buttonContainer.remove();
         
-        // Показываем стандартные элементы
+        // Показываем текстовый контейнер
         if (textContainer) textContainer.style.display = 'flex';
         if (choicesContainer) choicesContainer.style.display = 'flex';
         gameContainer.classList.remove('first-scene');
         
-        // Загружаем следующую сцену
+        // Сбрасываем позицию прокрутки
+        if (wrapper) {
+            wrapper.scrollTop = wrapper.scrollHeight;
+        }
+        
         loadScene('after_light');
     };
     
@@ -242,17 +245,44 @@ const scenes = {
 };
 
 // ========================
-// 5. ПОБУКВЕННЫЙ ВЫВОД ТЕКСТА
+// 5. ВЕРТИКАЛЬНАЯ АНИМАЦИЯ ТЕКСТА
 // ========================
-function typeText(text, element, speed = 30) {
+function typeTextVertical(text, element, wrapper, speed = 30) {
     let index = 0;
+    let html = '';
     element.textContent = '';
+    
+    // Разбиваем текст на абзацы (если есть \n\n)
+    const paragraphs = text.split('\n\n');
     
     function addChar() {
         if (index < text.length) {
-            element.textContent += text[index];
+            html += text[index];
+            
+            // Преобразуем переносы строк в <br>
+            let displayHtml = html
+                .replace(/\n\n/g, '</p><p>')
+                .replace(/\n/g, '<br>');
+            
+            // Оборачиваем в параграфы для лучшей читаемости
+            if (!displayHtml.startsWith('<p>')) {
+                displayHtml = '<p>' + displayHtml + '</p>';
+            }
+            
+            element.innerHTML = displayHtml;
             index++;
+            
+            // АВТОПРОКРУТКА ВВЕРХ (самая важная часть)
+            // Каждый новый символ прокручивает контейнер вверх
+            wrapper.scrollTop = 0;  // 0 = самый верх
+            
             setTimeout(addChar, speed);
+        } else {
+            // Финальная автопрокрутка к началу
+            wrapper.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
     }
     
@@ -279,10 +309,16 @@ function loadScene(sceneId) {
             bgElement.style.backgroundImage = scene.background || '';
         }
         
-        // Выводим текст побуквенно
+        // ВЫВОДИМ ТЕКСТ С ВЕРТИКАЛЬНОЙ АНИМАЦИЕЙ
         const textElement = document.getElementById('scene-text');
-        if (textElement) {
-            typeText(scene.text, textElement, 25);
+        const wrapper = document.querySelector('.scrolling-text-wrapper');
+        
+        if (textElement && wrapper) {
+            // Сбрасываем прокрутку в самый низ перед началом
+            wrapper.scrollTop = wrapper.scrollHeight;
+            
+            // Запускаем вертикальную анимацию
+            typeTextVertical(scene.text, textElement, wrapper, 25);
         }
         
         // Создаем кнопки
