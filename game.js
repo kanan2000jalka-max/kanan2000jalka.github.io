@@ -14,6 +14,7 @@ try {
 // ========================
 let gameState = {
     currentScene: "start",  // ID текущей сцены
+    gameStarted: false
     // Добавляйте сюда свои переменные:
     // hasKey: false,
     // listenedToElder: false,
@@ -333,6 +334,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Запускаем с сохраненной сцены или с начала
     setTimeout(() => {
-        loadScene(gameState.currentScene || 'start');
+        // ✅ ПРОВЕРЯЕМ, НУЖНО ЛИ ПОКАЗАТЬ ПЕРВУЮ СЦЕНУ
+        if (!gameState.gameStarted) {
+            showFirstScene();  // ← ВЫЗЫВАЕМ ФУНКЦИЮ
+        } else {
+            loadScene(gameState.currentScene || 'start');
+        }
     }, 100);
 });
