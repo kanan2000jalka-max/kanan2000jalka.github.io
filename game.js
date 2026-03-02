@@ -48,7 +48,7 @@ function loadGame() {
                 console.log('Сохраненная сцена не существует, начинаем заново');
                 localStorage.removeItem('storySave');  // Удаляем битое сохранение
                 gameState.gameStarted = false;
-                gameState.currentScene = "after_light";
+                gameState.currentScene = "first-scene";
             }
         }
     } catch (e) {
@@ -409,7 +409,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         // ✅ ПРОВЕРЯЕМ, НУЖНО ЛИ ПОКАЗАТЬ ПЕРВУЮ СЦЕНУ
         if (!gameState.gameStarted) {
-            console.log('after_light');
+            console.log('first-scene');
             showFirstScene();  // ← ВЫЗЫВАЕМ ФУНКЦИЮ
         } else {
             if (gameState.currentScene && scenes[gameState.currentScene]) {
