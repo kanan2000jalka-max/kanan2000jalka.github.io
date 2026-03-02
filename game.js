@@ -60,7 +60,7 @@ function showFirstScene() {
     
     // Устанавливаем фон для первой сцены
     if (bgElement) {
-        bgElement.style.backgroundImage = "url('images/111.png')";
+        bgElement.style.backgroundImage = "url('images/drk.png')";
     }
     
     // Скрываем стандартные элементы
@@ -108,7 +108,7 @@ function showFirstScene() {
 const scenes = {
     // СЦЕНА 1 - НАЧАЛО
     "after_light": {
-        text: "Вы стоите на перепутье. Дорога разделяется на три тропинки: одна ведет в темный лес, другая — к старому замку, третья — к морю.",
+        text: "Свет.",
         background: "url('images/111.png')",
         choices: [
             { 
