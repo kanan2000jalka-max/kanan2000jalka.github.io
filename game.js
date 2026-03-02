@@ -109,138 +109,58 @@ function showFirstScene() {
 const scenes = {
     // СЦЕНА 1 - НАЧАЛО
     "after_light": {
-        text: "Свет. Его здесь нет.",
+        type: "multi-page",
         background: "url('images/111.png')",
+        pages: [
+            "Свет...",
+            "Его здесь нет",
+            "Даже стекло на каком то моменте заканчивается - само понятие стеклянности исчезает, оставляя за смысловой вакуум",
+            "Я бы сказал, даже категорический вакуум! ",
+            "Основопологающий вакуум",
+            "Стекло, за которым нет ничего и присутствует все одновременно. За которым все прибывает в пермонентной суперпозиции прибывания во всех смыслах и пониманиях, во всех пространственных и временных положениях, в любой логической последовательности и с любой точки зрения.",
+            "Вот вся эта энтропийная каша находится здесь, перед твоим носом, ограниченная и замкнутая с четырех сторон. Все это бытие находится в рамочке, в окошке. А то что перед этим окном, ему абсолютно ничего не понятно. Перед ним лишь его блеклое отражение общего освещения, покрывающее черное стекло.",
+        ],
+        onComplete: {
+            nextScene: "exprmnt"  // перейти к сцене выбора
+        }
+    },
+    
+    "exprmnt": {
+        type: "choice",  // можно явно указать тип
+        background: "url('images/111.png')",
+        text: "Но давай с тобой устроим мысленный эксперимент? ",
         choices: [
             { 
-                text: "Пойти в лес", 
-                nextScene: "forest",
+                text: "1. Что за эксперемент?", 
+                nextScene: "non",
                 style: "mysterious"  // можно использовать mysterious, important, quiet, danger
             },
             { 
-                text: "Пойти к замку", 
-                nextScene: "castle",
-                style: "important"
+                text: "2. Давай", 
+                nextScene: "non",
+                style: "mysterious"  // можно использовать mysterious, important, quiet, danger
             },
             { 
-                text: "Пойти к морю", 
-                nextScene: "sea",
-                style: "quiet"
-            }
-        ]
-    },
-    
-    // СЦЕНА 2 - ЛЕС
-    "forest": {
-        text: "Вы входите в лес. Здесь царит полумрак и таинственная тишина. Ветви деревьев сплетаются над головой.",
-        background: "url('images/forest.jpg')",
-        choices: [
-            { 
-                text: "Вернуться на перепутье", 
-                nextScene: "start",
-                style: "quiet"
-            }
-        ]
-    },
-    
-    // СЦЕНА 3 - ЗАМОК
-    "castle": {
-        text: "Перед вами величественный замок. Его стены помнят сотни лет истории.",
-        background: "url('images/castle.jpg')",
-        choices: [
-            { 
-                text: "Войти в замок", 
-                nextScene: "castle_inside",
-                style: "important"
+                text: "3. ненадо", 
+                nextScene: "non",
+                style: "mysterious"  // можно использовать mysterious, important, quiet, danger
             },
-            { 
-                text: "Вернуться на перепутье", 
-                nextScene: "start",
-                style: "quiet"
-            }
         ]
     },
-    
-    "castle_inside": {
-        text: "Внутри замка темно и сыро. Слышны шаги призраков прошлого.",
-        background: "url('images/castle_inside.jpg')",
+
+    "non":{
+        type: "choice",
+        background: "url('images/11.png')",
+        text: "Эта страница пока что еще не готова. Прошу вас вернуться в самое начало) ",
         choices: [
             { 
-                text: "Исследовать подземелье", 
-                nextScene: "dungeon",
-                style: "danger"
+                text: "В начало", 
+                nextScene: "after_light",
+                style: "mysterious"  // можно использовать mysterious, important, quiet, danger
             },
-            { 
-                text: "Выйти из замка", 
-                nextScene: "castle",
-                style: "quiet"
-            }
-        ]
-    },
-    
-    // СЦЕНА 4 - МОРЕ
-    "sea": {
-        text: "Море спокойно. Волны ласково набегают на берег. Вдалеке виден корабль.",
-        background: "url('images/sea.jpg')",
-        choices: [
-            { 
-                text: "Ждать корабль", 
-                nextScene: "ship",
-                style: "important"
-            },
-            { 
-                text: "Вернуться на перепутье", 
-                nextScene: "start",
-                style: "quiet"
-            }
-        ]
-    },
-    
-    "ship": {
-        text: "Корабль причаливает к берегу. Капитан предлагает вам присоединиться к путешествию.",
-        background: "url('images/ship.jpg')",
-        choices: [
-            { 
-                text: "Согласиться", 
-                nextScene: "journey",
-                style: "important"
-            },
-            { 
-                text: "Отказаться и вернуться", 
-                nextScene: "sea",
-                style: "quiet"
-            }
-        ]
-    },
-    
-    "dungeon": {
-        text: "Вы спускаетесь в темное подземелье...",
-        background: "url('images/dungeon.jpg')",
-        choices: [
-            { 
-                text: "Идти дальше", 
-                nextScene: "start",
-                style: "danger"
-            }
-        ]
-    },
-    
-    "journey": {
-        text: "Вы отправляетесь в далекое путешествие...",
-        background: "url('images/journey.jpg')",
-        choices: [
-            { 
-                text: "Начать новую историю", 
-                nextScene: "start",
-                style: "important",
-                effect: () => {
-                    gameState = { currentScene: "start" };
-                    saveGame();
-                }
-            }
-        ]
     }
 };
+    
 
 // ========================
 // 5. ВЕРТИКАЛЬНАЯ АНИМАЦИЯ ТЕКСТА
