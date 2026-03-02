@@ -59,7 +59,7 @@ function showFirstScene() {
     
     // Устанавливаем фон для первой сцены
     if (bgElement) {
-        bgElement.style.backgroundImage = "url('images/start.jpg')";
+        bgElement.style.backgroundImage = "url('images/111.png')";
     }
     
     // Скрываем стандартные элементы
