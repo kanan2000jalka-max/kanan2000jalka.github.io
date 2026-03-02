@@ -22,6 +22,18 @@ let gameState = {
 };
 
 // ========================
+// ДЛЯ ОСТАНОВКИ АНИМАЦИИ
+// ========================
+let currentAnimation = null;  // Хранит таймер текущей анимации
+
+function stopCurrentAnimation() {
+    if (currentAnimation) {
+        clearTimeout(currentAnimation);
+        currentAnimation = null;
+    }
+}
+
+// ========================
 // 2. ЗАГРУЗКА СОХРАНЕНИЯ
 // ========================
 function loadGame() {
@@ -177,6 +189,8 @@ const scenes = {
 // 5. ВЕРТИКАЛЬНАЯ АНИМАЦИЯ ТЕКСТА
 // ========================
 function typeTextVertical(text, element, wrapper, speed = 30) {
+    stopCurrentAnimation();
+    
     let index = 0;
     let html = '';
     element.textContent = '';
@@ -365,6 +379,9 @@ function createFullscreenClickListener(sceneId, currentPage) {
     
     // Создаем новый слушатель
     fullscreenClickListener = () => {
+        // ОСТАНАВЛИВАЕМ АНИМАЦИЮ ПЕРЕД ПЕРЕХОДОМ
+        stopCurrentAnimation();
+        
         // Переходим к следующей странице
         const nextPage = currentPage + 1;
         loadMultiPageScene(sceneId, nextPage);
