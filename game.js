@@ -54,6 +54,8 @@ function saveGame() {
 // 4. ПЕРВАЯ СЦЕНА (ОБНОВЛЕННАЯ)
 // ========================
 function showFirstScene() {
+    console.log('showFirstScene вызвана');  // ДЛЯ ОТЛАДКИ
+    console.log('gameState.gameStarted =', gameState.gameStarted);
     const gameContainer = document.querySelector('.game-container');
     const bgElement = document.getElementById('background');
     const textContainer = document.querySelector('.text-container');
