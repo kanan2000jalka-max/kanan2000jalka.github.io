@@ -21,6 +21,8 @@ let gameState = {
     // timeOfDay: "day"
 };
 
+localStorage.removeItem('storySave');
+
 // ========================
 // 2. ЗАГРУЗКА СОХРАНЕНИЯ
 // ========================
@@ -29,11 +31,19 @@ function loadGame() {
         const saved = localStorage.getItem('storySave');
         if (saved) {
             const parsed = JSON.parse(saved);
-            gameState = { ...gameState, ...parsed };
-            console.log('Сохранение загружено');
+            if (parsed.currentScene && scenes[parsed.currentScene]) {
+                gameState = { ...gameState, ...parsed };
+                console.log('Сохранение загружено:', parsed.currentScene);
+            } else {
+                console.log('Сохраненная сцена не существует, начинаем заново');
+                localStorage.removeItem('storySave');  // Удаляем битое сохранение
+                gameState.gameStarted = false;
+                gameState.currentScene = "after_light";
+            }
         }
     } catch (e) {
         console.log('Не удалось загрузить сохранение');
+        localStorage.removeItem('storySave');
     }
 }
 
@@ -384,9 +394,24 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         // ✅ ПРОВЕРЯЕМ, НУЖНО ЛИ ПОКАЗАТЬ ПЕРВУЮ СЦЕНУ
         if (!gameState.gameStarted) {
+            console.log('after_light');
             showFirstScene();  // ← ВЫЗЫВАЕМ ФУНКЦИЮ
         } else {
-            loadScene(gameState.currentScene || 'after_light');
+            if (gameState.currentScene && scenes[gameState.currentScene]) {
+                console.log('Загрузка сцены:', gameState.currentScene);
+            loadScene(gameState.currentScene);
+                } else {
+                console.log('Сцена не найдена, запуск первой сцены');
+                gameState.gameStarted = false;
+                showFirstScene();
+            }
         }
     }, 100);
 });
+
+
+
+
+
+
+
