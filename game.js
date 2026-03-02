@@ -14,7 +14,7 @@ try {
 // ========================
 let gameState = {
     currentScene: "start",  // ID текущей сцены
-    gameStarted: false
+    gameStarted: false,
     // Добавляйте сюда свои переменные:
     // hasKey: false,
     // listenedToElder: false,
@@ -158,6 +158,7 @@ const scenes = {
                 nextScene: "after_light",
                 style: "mysterious"  // можно использовать mysterious, important, quiet, danger
             },
+        ]
     }
 };
     
@@ -381,7 +382,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!gameState.gameStarted) {
             showFirstScene();  // ← ВЫЗЫВАЕМ ФУНКЦИЮ
         } else {
-            loadScene(gameState.currentScene || 'start');
+            loadScene(gameState.currentScene || 'after_light');
         }
     }, 100);
 });
