@@ -188,7 +188,7 @@ const scenes = {
 // ========================
 // 5. ВЕРТИКАЛЬНАЯ АНИМАЦИЯ ТЕКСТА
 // ========================
-function typeTextVertical(text, element, wrapper, speed = 30) {
+function typeTextVertical(text, element, wrapper, speed = 15) {
     stopCurrentAnimation();
     
     let index = 0;
