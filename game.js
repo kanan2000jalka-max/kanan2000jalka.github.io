@@ -21,8 +21,6 @@ let gameState = {
     // timeOfDay: "day"
 };
 
-localStorage.removeItem('storySave');
-
 // ========================
 // 2. ЗАГРУЗКА СОХРАНЕНИЯ
 // ========================
