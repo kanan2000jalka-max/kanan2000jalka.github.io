@@ -51,9 +51,62 @@ function saveGame() {
 // ========================
 // 4. БАЗА ДАННЫХ ВАШЕЙ ИСТОРИИ
 // ========================
+function showFirstScene() {
+    const gameContainer = document.querySelector('.game-container');
+    const bgElement = document.getElementById('background');
+    const textContainer = document.querySelector('.text-container');
+    const choicesContainer = document.getElementById('choices');
+    
+    // Устанавливаем фон для первой сцены
+    if (bgElement) {
+        bgElement.style.backgroundImage = "url('images/start.jpg')";
+    }
+    
+    // Скрываем стандартные элементы
+    if (textContainer) textContainer.style.display = 'none';
+    if (choicesContainer) choicesContainer.style.display = 'none';
+    
+    // Добавляем класс для особой стилизации
+    gameContainer.classList.add('first-scene');
+    
+    // Проверяем, не создана ли уже кнопка
+    let existingButton = document.querySelector('.light-button-container');
+    if (existingButton) {
+        existingButton.remove();
+    }
+    
+    // Создаем центрированную кнопку
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'centered-button-container light-button-container';
+    
+    const lightButton = document.createElement('button');
+    lightButton.className = 'light-button';
+    lightButton.textContent = 'СВЕТ';
+    
+    lightButton.onclick = () => {
+        // При нажатии на кнопку
+        gameState.gameStarted = true;
+        saveGame();
+        
+        // Удаляем специальную кнопку
+        buttonContainer.remove();
+        
+        // Показываем стандартные элементы
+        if (textContainer) textContainer.style.display = 'flex';
+        if (choicesContainer) choicesContainer.style.display = 'flex';
+        gameContainer.classList.remove('first-scene');
+        
+        // Загружаем следующую сцену
+        loadScene('after_light');
+    };
+    
+    buttonContainer.appendChild(lightButton);
+    gameContainer.appendChild(buttonContainer);
+}
+
 const scenes = {
     // СЦЕНА 1 - НАЧАЛО
-    "start": {
+    "after_light": {
         text: "Вы стоите на перепутье. Дорога разделяется на три тропинки: одна ведет в темный лес, другая — к старому замку, третья — к морю.",
         background: "url('images/111.png')",
         choices: [
