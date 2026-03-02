@@ -111,6 +111,8 @@ body {
     text-transform: uppercase;
     font-weight: bold;
 }
+
+/* Специальный контейнер для центрированной кнопки */
 .centered-button-container {
     position: absolute;
     top: 50%;
