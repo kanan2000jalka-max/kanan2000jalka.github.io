@@ -55,7 +55,7 @@ const scenes = {
     // СЦЕНА 1 - НАЧАЛО
     "start": {
         text: "Вы стоите на перепутье. Дорога разделяется на три тропинки: одна ведет в темный лес, другая — к старому замку, третья — к морю.",
-        background: "url('images/start.jpg')",
+        background: "url('images/111.jpg')",
         choices: [
             { 
                 text: "Пойти в лес", 
